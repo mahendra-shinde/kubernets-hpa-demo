@@ -17,22 +17,16 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-      - uses: actions/checkout@v2
-      - name: Docker meta
-        id: meta
-        uses: docker/metadata-action@v3
+      - uses: actions/checkout@v2      
+      - name: Login to DockerHub
+        uses: docker/login-action@v1 
         with:
-          images: |
-            mahendrshinde/hpa-sample
-          # generate Docker tags based on the following events/attributes
-          tags: |
-            type=semver,pattern={{major}}.{{minor}}
-            type=ref,event=branch
-
+          username: ${{ secrets.DOCKERHUBID }}
+          password: ${{ secrets.DOCKERHUBPASS }}
       - name: Build and push Docker images
         uses: docker/build-push-action@v2.4.0
         with:
           pull: true
           push: true
-          tags: ${{ steps.meta.outputs.tags }}
-          labels: ${{ steps.meta.outputs.labels }}
+          tags: mahendrshinde/image-resizer:${{ env.GITHUB_RUN_NUMBER }}
+          
