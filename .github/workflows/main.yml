@@ -30,7 +30,7 @@ jobs:
         uses: docker/metadata-action@v3
         with:
           images: |
-            mahendrshinde/image-resizer
+            image-resizer
           # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule
