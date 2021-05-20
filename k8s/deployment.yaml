@@ -1,0 +1,45 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-resizer
+  namespace: resize
+  labels:
+    app: image-resizer
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: image-resizer
+  template:
+    metadata:
+      labels:
+        app: image-resizer
+    spec:
+      nodeSelector:
+        
+          
+      containers:
+      - name: image-resizer
+        image: mahendrshind/image-resizer:latest
+        resources:
+          limits:
+            memory: "550Mi"
+        env:
+        - name: JAVA_OPTS
+          value: "-Xmx512m -Xms256m"
+        ports:
+        - containerPort: 8080
+        livenessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 30
+          timeoutSeconds: 5
+          failureThreshold: 3
+        readinessProbe:
+          httpGet:
+            path: /actuator/health
+            port: 8080
+          initialDelaySeconds: 25
+          timeoutSeconds: 5
+          failureThreshold: 5

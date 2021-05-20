@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Image Resizer</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    
+</head>
+<body>
+    <h2>Image Resizer</h2>
+    <hr/>
+    <p>A Simple application to resize your JPEG Images, and save the storage space!</p>
+    <form action="api/resize" method="post" enctype="multipart/form-data">
+        <input type="file" name="data" required/> <br/>
+        Image Scale to original: <select name="scale" required>
+            <option value="0.2" selected>20%</option>
+            <option value="0.4">40%</option>
+            <option value="0.6">60%</option>
+            <option value="0.8">80%</option>
+        </select> <br/>
+        <input value="Process Image" type="submit"/>
+    </form>
+</body>
+</html>
