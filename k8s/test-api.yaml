@@ -1,0 +1,17 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: test-api
+spec:
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+      - name: test1
+        env:
+        - name: SRVHOST
+          value: image-resizer:8080
+        - name: REQUEST_COUNT
+          value: '3000'      
+        image: mahendrshinde/test-api        
+      restartPolicy: Never

@@ -2,7 +2,7 @@ apiVersion: autoscaling/v2beta1
 kind: HorizontalPodAutoscaler
 metadata:
   name: resize-hpa
-  namespace: resize
+  
 spec:
   scaleTargetRef:
     apiVersion: apps/v1
