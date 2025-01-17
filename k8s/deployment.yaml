@@ -22,7 +22,7 @@ spec:
         image: mahendrshinde/image-resizer:latest
         resources:
           limits:
-            memory: "200Mi"
+            memory: "512Mi"
             cpu: '500m'
         env:
         - name: JAVA_OPTS
